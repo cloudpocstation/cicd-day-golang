@@ -1,6 +1,6 @@
 pipeline {
   agent {
-    label "jenkins-go"
+    label "jenkins-maven"
   }
   environment {
     ORG = 'cloudpocstation'
@@ -19,7 +19,7 @@ pipeline {
         HELM_RELEASE = "$PREVIEW_NAMESPACE".toLowerCase()
       }
       steps {
-        container('go') {
+        container('maven') {
           dir('/home/jenkins/go/src/github.com/cloudpocstation/cicd-day-golang') {
             checkout scm
             sh "find ."
