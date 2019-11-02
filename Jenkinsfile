@@ -22,6 +22,8 @@ pipeline {
         container('go') {
           dir('/home/jenkins/go/src/github.com/cloudpocstation/cicd-day-golang') {
             checkout scm
+            sh "find ."
+            sh "export"
             sh "make linux"
             sh "export VERSION=$PREVIEW_VERSION && skaffold build -f skaffold.yaml"
             sh "jx step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:$PREVIEW_VERSION"
