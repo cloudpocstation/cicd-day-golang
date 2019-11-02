@@ -21,6 +21,9 @@ pipeline {
       steps {
         container('go') {
           dir('/home/jenkins/go/src/github.com/cloudpocstation/cicd-day-golang') {
+            sh "find ."
+            sh "export"
+            sh "get --version"
             checkout scm
             sh "find ."
             sh "export"
